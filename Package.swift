@@ -24,7 +24,7 @@ let package = Package(
 				.define("BUILD_ALSA", supportsALSA)
 		    ],
 			linkerSettings: [
-				.linkedLibrary("asound")
+				.linkedLibrary("asound", supportsALSA)
 			]),
         .target(
             name: "portaudio",
