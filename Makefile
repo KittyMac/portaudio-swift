@@ -1,8 +1,11 @@
 SWIFT_BUILD_FLAGS=--configuration release
 
 .PHONY: all build clean xcode
+	
+fix_bad_header_files:
+	find  . -name '._*.h' -exec rm {} \;
 
-all: build
+all: fix_bad_header_files build
 
 build:
 	swift build $(SWIFT_BUILD_FLAGS)
