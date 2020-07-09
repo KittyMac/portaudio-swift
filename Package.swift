@@ -22,7 +22,10 @@ let package = Package(
 			cSettings: [
 				.define("BUILD_COREAUDIO", supportsCoreAudio),
 				.define("BUILD_ALSA", supportsALSA)
-		    ]),
+		    ],
+			linkerSettings: [
+				.linkedLibrary("asound")
+			]),
         .target(
             name: "portaudio",
             dependencies: [
