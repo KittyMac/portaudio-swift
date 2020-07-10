@@ -34,10 +34,9 @@ func PaErrorAsString(_ error: PaError) -> String {
     case paBadBufferPtr: return "paBadBufferPtr"
     default: return "unknown"
     }
-    return "unknown"
 }
 
-func printf(_ format:String,
+func _printf(_ format:String,
             _ arg0:CVarArg = 0,
             _ arg1:CVarArg = 0,
             _ arg2:CVarArg = 0,
@@ -60,22 +59,22 @@ fileprivate func printSupportedStandardSampleRates(_ inputParameters: UnsafePoin
         let err = Pa_IsFormatSupported( inputParameters, outputParameters, sampleRate )
         if err == paFormatIsSupported {
             if printCount == 0 {
-                printf( "\t%8.2f", sampleRate )
+                _printf( "\t%8.2f", sampleRate )
                 printCount = 1
             }
             else if printCount == 4 {
-                printf( ",\n\t%8.2f", sampleRate )
+                _printf( ",\n\t%8.2f", sampleRate )
                 printCount = 1
             } else {
-                printf( ", %8.2f", sampleRate )
+                _printf( ", %8.2f", sampleRate )
                 printCount += 1
             }
         }
     }
     if printCount == 0 {
-        printf("None\n")
+        _printf("None\n")
     } else {
-        printf("\n")
+        _printf("\n")
     }
 }
 
@@ -84,29 +83,29 @@ public extension PaDeviceInfo {
         let hostAPIPtr = Pa_GetHostApiInfo( self.hostApi )
         if let hostAPI = hostAPIPtr?.pointee {
             if idx == Pa_GetDefaultInputDevice() {
-                printf("[ Default Input ]\n")
+                _printf("[ Default Input ]\n")
             } else if idx == hostAPI.defaultInputDevice {
-                printf("[ Default %s Input ]\n", hostAPI.name)
+                _printf("[ Default %s Input ]\n", hostAPI.name)
             }
             
             if idx == Pa_GetDefaultOutputDevice() {
-                printf("[ Default Output ]\n")
+                _printf("[ Default Output ]\n")
             }
             else if idx == hostAPI.defaultOutputDevice {
-                printf("[ Default %s Output ]\n", hostAPI.name)
+                _printf("[ Default %s Output ]\n", hostAPI.name)
             }
             
-            printf("Name                        = %s\n", self.name)
-            printf("Host API                    = %s\n",  hostAPI.name)
-            printf("Max inputs = %d", self.maxInputChannels)
-            printf(", Max outputs = %d\n", self.maxOutputChannels)
+            _printf("Name                        = %s\n", self.name)
+            _printf("Host API                    = %s\n",  hostAPI.name)
+            _printf("Max inputs = %d", self.maxInputChannels)
+            _printf(", Max outputs = %d\n", self.maxOutputChannels)
             
-            printf("Default low input latency   = %8.4f\n", self.defaultLowInputLatency)
-            printf("Default low output latency  = %8.4f\n", self.defaultLowOutputLatency)
-            printf("Default high input latency  = %8.4f\n", self.defaultHighInputLatency)
-            printf("Default high output latency = %8.4f\n", self.defaultHighOutputLatency)
+            _printf("Default low input latency   = %8.4f\n", self.defaultLowInputLatency)
+            _printf("Default low output latency  = %8.4f\n", self.defaultLowOutputLatency)
+            _printf("Default high input latency  = %8.4f\n", self.defaultHighInputLatency)
+            _printf("Default high output latency = %8.4f\n", self.defaultHighOutputLatency)
             
-            printf( "Default sample rate         = %8.2f\n", self.defaultSampleRate)
+            _printf( "Default sample rate         = %8.2f\n", self.defaultSampleRate)
             
             /* poll for standard sample rates */
             var inputParameters = PaStreamParameters()
@@ -126,21 +125,21 @@ public extension PaDeviceInfo {
             
             if( inputParameters.channelCount > 0 )
             {
-                printf("Supported standard sample rates\n for half-duplex 16 bit %d channel input = \n",
+                _printf("Supported standard sample rates\n for half-duplex 16 bit %d channel input = \n",
                        inputParameters.channelCount )
                 printSupportedStandardSampleRates( &inputParameters, nil )
             }
             
             if( outputParameters.channelCount > 0 )
             {
-                printf("Supported standard sample rates\n for half-duplex 16 bit %d channel output = \n",
+                _printf("Supported standard sample rates\n for half-duplex 16 bit %d channel output = \n",
                        outputParameters.channelCount )
                 printSupportedStandardSampleRates( nil, &outputParameters )
             }
             
             if( inputParameters.channelCount > 0 && outputParameters.channelCount > 0 )
             {
-                printf("Supported standard sample rates\n for full-duplex 16 bit %d channel input, %d channel output = \n",
+                _printf("Supported standard sample rates\n for full-duplex 16 bit %d channel input, %d channel output = \n",
                        inputParameters.channelCount, outputParameters.channelCount )
                 printSupportedStandardSampleRates( &inputParameters, &outputParameters )
             }
@@ -150,14 +149,14 @@ public extension PaDeviceInfo {
 
 public extension PortAudio {
     func print() {
-        printf("PortAudio version: 0x%08X\n", Pa_GetVersion())
-        printf("Version text: '%s'\n", Pa_GetVersionText())
+        _printf("PortAudio version: 0x%08X\n", Pa_GetVersion())
+        _printf("Version text: '%s'\n", Pa_GetVersionText())
         
         var idx: Int32 = -1
         for deviceInfo in devices {
             idx += 1
             
-            printf("--------------------------------------- device #%d\n", idx)
+            _printf("--------------------------------------- device #%d\n", idx)
             deviceInfo.print(idx)
         }
     }

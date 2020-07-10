@@ -11,7 +11,7 @@ public class PortAudio {
         
         err = Pa_Initialize()
         if err != paNoError.rawValue {
-            printf("ERROR:  Pa_Initialize returned error %@\n", PaErrorAsString(err))
+            _printf("ERROR:  Pa_Initialize returned error %@\n", PaErrorAsString(err))
             return
         }
         
@@ -21,7 +21,7 @@ public class PortAudio {
     public var devices:[PaDeviceInfo] {
         let numDevices = Pa_GetDeviceCount()
         if numDevices < 0 {
-            printf("ERROR:  Pa_GetDeviceCount returned error %d\n", numDevices)
+            _printf("ERROR:  Pa_GetDeviceCount returned error %d\n", numDevices)
             return []
         }
         

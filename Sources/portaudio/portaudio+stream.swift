@@ -22,7 +22,7 @@ class PortAudioStream {
     func start() -> Bool {
         let err = Pa_StartStream(stream)
         if err != paNoError.rawValue {
-            printf("ERROR:  Pa_StartStream returned error %@\n", PaErrorAsString(err))
+            _printf("ERROR:  Pa_StartStream returned error %@\n", PaErrorAsString(err))
             return false
         }
         return true
@@ -32,7 +32,7 @@ class PortAudioStream {
     func stop() -> Bool {
         let err = Pa_StopStream(stream)
         if err != paNoError.rawValue {
-            printf("ERROR:  Pa_StopStream returned error %@\n", PaErrorAsString(err))
+            _printf("ERROR:  Pa_StopStream returned error %@\n", PaErrorAsString(err))
             return false
         }
         return true
@@ -42,7 +42,7 @@ class PortAudioStream {
     func close() -> Bool {
         let err = Pa_CloseStream(stream)
         if err != paNoError.rawValue {
-            printf("ERROR:  Pa_CloseStream returned error %@\n", PaErrorAsString(err))
+            _printf("ERROR:  Pa_CloseStream returned error %@\n", PaErrorAsString(err))
             return false
         }
         return true
@@ -74,7 +74,7 @@ extension PortAudio {
                                 streamData,
                                 userData)
         if err != paNoError.rawValue {
-            printf("ERROR:  Pa_OpenStream returned error %@\n", PaErrorAsString(err))
+            _printf("ERROR:  Pa_OpenStream returned error %@\n", PaErrorAsString(err))
             return nil
         }
         
