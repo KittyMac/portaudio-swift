@@ -4,7 +4,9 @@ import XCTest
 final class portaudioTests: XCTestCase {
     func testExample() {
         
-		PortAudio()
+		let pa = PortAudio()
+        
+        pa.print()
 		
     }
 

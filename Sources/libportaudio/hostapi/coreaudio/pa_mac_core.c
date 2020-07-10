@@ -62,7 +62,7 @@
  * PaMacCore_SetError() will do this.
  */
 
-#if BUILD_COREAUDIO
+#if PA_USE_COREAUDIO
 
 #include "pa_mac_core_internal.h"
 

@@ -1,0 +1,4 @@
+module libportaudio {
+    umbrella "/Volumes/Development/Development/chimerasw2/portaudio-swift/Sources/libportaudio/include"
+    export *
+}

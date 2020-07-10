@@ -47,7 +47,7 @@
  @ingroup hostapi_src
 */
 
-#if BUILD_ALSA
+#if PA_USE_ALSA
 
 #define ALSA_PCM_NEW_HW_PARAMS_API
 #define ALSA_PCM_NEW_SW_PARAMS_API

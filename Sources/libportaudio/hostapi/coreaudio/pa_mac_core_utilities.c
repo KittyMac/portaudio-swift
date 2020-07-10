@@ -56,7 +56,7 @@
  @ingroup hostapi_src
 */
 
-#if BUILD_COREAUDIO
+#if PA_USE_COREAUDIO
 
 #include "pa_mac_core_utilities.h"
 #include "pa_mac_core_internal.h"

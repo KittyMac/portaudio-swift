@@ -20,11 +20,16 @@ let package = Package(
             name: "libportaudio",
             dependencies: [],
 			cSettings: [
-				.define("BUILD_COREAUDIO", supportsCoreAudio),
-				.define("BUILD_ALSA", supportsALSA)
+				.define("PA_USE_COREAUDIO", supportsCoreAudio),
+				.define("PA_USE_ALSA", supportsALSA)
 		    ],
 			linkerSettings: [
-				.linkedLibrary("asound", supportsALSA)
+				.linkedLibrary("asound", supportsALSA),
+				.linkedFramework("CoreAudio", supportsCoreAudio),
+				.linkedFramework("CoreServices", supportsCoreAudio),
+				.linkedFramework("CoreFoundation", supportsCoreAudio),
+				.linkedFramework("AudioUnit", supportsCoreAudio),
+				.linkedFramework("AudioToolbox", supportsCoreAudio)
 			]),
         .target(
             name: "portaudio",
