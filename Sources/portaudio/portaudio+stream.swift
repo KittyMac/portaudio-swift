@@ -13,9 +13,11 @@ typealias PaStreamFinishedClosure = (@convention(c) (_ userData: UnsafeMutableRa
 
 class PortAudioStream {
     var stream: PaStream
+    let framePerBuffer: UInt
     
-    init(_ stream: PaStream) {
+    init(_ stream: PaStream, _ framePerBuffer: UInt) {
         self.stream = stream
+        self.framePerBuffer = framePerBuffer
     }
     
     @discardableResult
@@ -48,6 +50,36 @@ class PortAudioStream {
         return true
     }
     
+    @discardableResult
+    func abort() -> Bool {
+        let err = Pa_AbortStream(stream)
+        if err != paNoError.rawValue {
+            _printf("ERROR:  Pa_AbortStream returned error \(PaErrorAsString(err))\n")
+            return false
+        }
+        return true
+    }
+    
+    @discardableResult
+    func read(_ buffer:UnsafeMutableRawPointer) -> Bool {
+        let err = Pa_ReadStream(stream, buffer, framePerBuffer)
+        if err != paNoError.rawValue {
+            _printf("ERROR:  Pa_ReadStream returned error \(PaErrorAsString(err))\n")
+            return false
+        }
+        return true
+    }
+    
+    @discardableResult
+    func write(_ buffer:UnsafeMutableRawPointer) -> Bool {
+        let err = Pa_WriteStream(stream, buffer, framePerBuffer)
+        if err != paNoError.rawValue {
+            _printf("ERROR:  Pa_WriteStream returned error \(PaErrorAsString(err))\n")
+            return false
+        }
+        return true
+    }
+    
     func sleep(_ ms: Int) {
         Pa_Sleep(ms)
     }
@@ -57,19 +89,18 @@ extension PortAudio {
     
     func openStream(_ inputParameters: UnsafePointer<PaStreamParameters>?,
                     _ outputParameters: UnsafePointer<PaStreamParameters>?,
-                    _ userData: UnsafeMutableRawPointer,
-                    _ streamData: PaStreamDataClosure!,
+                    _ sampleRate: Double = 44100,
+                    _ framePerBuffer: Int = 512,
+                    _ userData: UnsafeMutableRawPointer? = nil,
+                    _ streamData: PaStreamDataClosure! = nil,
                     _ streamFinished: PaStreamFinishedClosure? = nil) -> PortAudioStream? {
-        
-        let SAMPLE_RATE: Double = 44100
-        let FRAMES_PER_BUFFER: UInt = 64
-                
+                        
         var stream:PaStream? = nil
         let err = Pa_OpenStream(&stream,
                                 inputParameters,
                                 outputParameters,
-                                SAMPLE_RATE,
-                                FRAMES_PER_BUFFER,
+                                sampleRate,
+                                UInt(framePerBuffer),
                                 paClipOff,
                                 streamData,
                                 userData)
@@ -83,7 +114,7 @@ extension PortAudio {
         }
         
         if let stream = stream {
-            return PortAudioStream(stream)
+            return PortAudioStream(stream, UInt(framePerBuffer))
         }
         
         return nil

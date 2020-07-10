@@ -78,7 +78,7 @@ final class portaudioTests: XCTestCase {
             }
             
             var data = paSineData(200)
-            if let stream = portaudio.openStream(nil, &outputParameters, &data, processAudio, streamFinished) {
+            if let stream = portaudio.openStream(nil, &outputParameters, 44100, 512, &data, processAudio, streamFinished) {
                 print("stream opened!")
                 stream.start()
                 stream.sleep(1000)
@@ -88,10 +88,63 @@ final class portaudioTests: XCTestCase {
 
         }
     }
+    
+    func testSimplePassthrough() {
+        
+        let portaudio = PortAudio()
+        
+        if let (outputDevice, outputDeviceIdx) = portaudio.defaultOutputDevice,
+            let (inputDevice, inputDeviceIdx) = portaudio.defaultOutputDevice {
+            
+            inputDevice.print(inputDeviceIdx)
+            
+            outputDevice.print(outputDeviceIdx)
+                        
+            var inputParameters = PaStreamParameters()
+            inputParameters.device = inputDeviceIdx
+            inputParameters.channelCount = 2
+            inputParameters.sampleFormat = paFloat32
+            inputParameters.suggestedLatency = inputDevice.defaultHighOutputLatency
+            inputParameters.hostApiSpecificStreamInfo = nil
+            
+            var outputParameters = PaStreamParameters()
+            outputParameters.device = outputDeviceIdx
+            outputParameters.channelCount = 2
+            outputParameters.sampleFormat = paFloat32
+            outputParameters.suggestedLatency = outputDevice.defaultHighOutputLatency
+            outputParameters.hostApiSpecificStreamInfo = nil
+                        
+            let sampleRate: Double = 44100
+            let framePerBuffer: Int = 512
+            if let stream = portaudio.openStream(&inputParameters, &outputParameters, sampleRate, framePerBuffer) {
+                print("stream opened!")
+                stream.start()
+                
+                let buffer = UnsafeMutablePointer<Float>.allocate(capacity: framePerBuffer)
+                buffer.initialize(to: 0)
+                                
+                while true {
+                    stream.write(buffer)
+                    stream.read(buffer)
+                    
+                    var avg: Float = 0
+                    for idx in 0..<framePerBuffer {
+                        avg += buffer[idx]
+                    }
+                    print(avg)
+                }
+                
+                stream.stop()
+                stream.close()
+            }
+
+        }
+    }
 
     static var allTests = [
-        ("testPrintInfo", testPrintInfo),
+        /*("testPrintInfo", testPrintInfo),
         ("testPrintDefaultDevicesOnly", testPrintDefaultDevicesOnly),
-        ("testPlaySineWave", testPlaySineWave),
+        ("testPlaySineWave", testPlaySineWave),*/
+        ("testSimplePassthrough", testSimplePassthrough),
     ]
 }

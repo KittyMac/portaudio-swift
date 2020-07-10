@@ -18,6 +18,10 @@ public class PortAudio {
         ready = true
     }
     
+    deinit {
+        Pa_Terminate()
+    }
+    
     public var devices:[PaDeviceInfo] {
         let numDevices = Pa_GetDeviceCount()
         if numDevices < 0 {
