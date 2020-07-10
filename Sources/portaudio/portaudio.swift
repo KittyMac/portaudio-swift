@@ -11,7 +11,7 @@ public class PortAudio {
         
         err = Pa_Initialize()
         if err != paNoError.rawValue {
-            _printf("ERROR:  Pa_Initialize returned error %@\n", PaErrorAsString(err))
+            _printf("ERROR:  Pa_Initialize returned error \(PaErrorAsString(err))\n")
             return
         }
         
