@@ -94,25 +94,29 @@ final class portaudioTests: XCTestCase {
         let portaudio = PortAudio()
         
         if let (outputDevice, outputDeviceIdx) = portaudio.defaultOutputDevice,
-            let (inputDevice, inputDeviceIdx) = portaudio.defaultOutputDevice {
+            let (inputDevice, inputDeviceIdx) = portaudio.defaultInputDevice {
             
             inputDevice.print(inputDeviceIdx)
             
             outputDevice.print(outputDeviceIdx)
+            
+            let numChannels = inputDevice.maxInputChannels < outputDevice.maxOutputChannels ? inputDevice.maxInputChannels : outputDevice.maxOutputChannels
                         
             var inputParameters = PaStreamParameters()
             inputParameters.device = inputDeviceIdx
-            inputParameters.channelCount = 2
+            inputParameters.channelCount = numChannels
             inputParameters.sampleFormat = paFloat32
-            inputParameters.suggestedLatency = inputDevice.defaultHighOutputLatency
+            inputParameters.suggestedLatency = inputDevice.defaultHighInputLatency
             inputParameters.hostApiSpecificStreamInfo = nil
             
             var outputParameters = PaStreamParameters()
             outputParameters.device = outputDeviceIdx
-            outputParameters.channelCount = 2
+            outputParameters.channelCount = numChannels
             outputParameters.sampleFormat = paFloat32
             outputParameters.suggestedLatency = outputDevice.defaultHighOutputLatency
             outputParameters.hostApiSpecificStreamInfo = nil
+            
+            print("passthrough channels: \(numChannels)")
                         
             let sampleRate: Double = 44100
             let framePerBuffer: Int = 512
@@ -120,19 +124,28 @@ final class portaudioTests: XCTestCase {
                 print("stream opened!")
                 stream.start()
                 
-                let buffer = UnsafeMutablePointer<Float>.allocate(capacity: framePerBuffer)
+                let buffer = UnsafeMutablePointer<Float>.allocate(capacity: framePerBuffer * Int(numChannels))
                 buffer.initialize(to: 0)
                                 
                 while true {
-                    stream.write(buffer)
-                    stream.read(buffer)
+                    if !stream.write(buffer) { break }
+                    if !stream.read(buffer) { break }
                     
+                    for idx in 0..<framePerBuffer {
+                        if buffer[idx] > 0.0 {
+                            print(buffer[idx])
+                        }
+                    }
+                    
+                    /*
                     var avg: Float = 0
                     for idx in 0..<framePerBuffer {
-                        avg += buffer[idx]
+                        avg += Float(buffer[idx])
                     }
-                    print(avg)
+                    print(avg / Float(framePerBuffer))*/
                 }
+                
+                buffer.deallocate()
                 
                 stream.stop()
                 stream.close()

@@ -1,6 +1,6 @@
 import libportaudio
 
-typealias PaStream = UnsafeMutableRawPointer
+typealias PaStreamPtr = UnsafeMutableRawPointer
 
 typealias PaStreamDataClosure = (@convention(c) (  _ inputBuffer: UnsafeRawPointer?,
     _ outputBuffer: UnsafeMutableRawPointer?,
@@ -12,10 +12,10 @@ typealias PaStreamDataClosure = (@convention(c) (  _ inputBuffer: UnsafeRawPoint
 typealias PaStreamFinishedClosure = (@convention(c) (_ userData: UnsafeMutableRawPointer?) -> Void)
 
 class PortAudioStream {
-    var stream: PaStream
+    var stream: PaStreamPtr
     let framePerBuffer: UInt
     
-    init(_ stream: PaStream, _ framePerBuffer: UInt) {
+    init(_ stream: PaStreamPtr, _ framePerBuffer: UInt) {
         self.stream = stream
         self.framePerBuffer = framePerBuffer
     }
@@ -92,10 +92,10 @@ extension PortAudio {
                     _ sampleRate: Double = 44100,
                     _ framePerBuffer: Int = 512,
                     _ userData: UnsafeMutableRawPointer? = nil,
-                    _ streamData: PaStreamDataClosure! = nil,
+                    _ streamData: PaStreamDataClosure? = nil,
                     _ streamFinished: PaStreamFinishedClosure? = nil) -> PortAudioStream? {
                         
-        var stream:PaStream? = nil
+        var stream:PaStreamPtr? = nil
         let err = Pa_OpenStream(&stream,
                                 inputParameters,
                                 outputParameters,
@@ -110,7 +110,7 @@ extension PortAudio {
         }
         
         if let streamFinished = streamFinished {
-            Pa_SetStreamFinishedCallback(&stream, streamFinished)
+            Pa_SetStreamFinishedCallback(stream, streamFinished)
         }
         
         if let stream = stream {
