@@ -1,4 +1,5 @@
 import libportaudio
+import Foundation
 
 func printf(_ format:String,
             _ arg0:CVarArg = 0,
