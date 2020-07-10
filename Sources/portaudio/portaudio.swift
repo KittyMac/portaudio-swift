@@ -1,4 +1,5 @@
 import libportaudio
+import Foundation
 
 public class PortAudio {
     
