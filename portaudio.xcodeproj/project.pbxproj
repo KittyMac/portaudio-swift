@@ -9,11 +9,11 @@
 /* Begin PBXAggregateTarget section */
 		"portaudio::portaudioPackageTests::ProductTarget" /* portaudioPackageTests */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = OBJ_101 /* Build configuration list for PBXAggregateTarget "portaudioPackageTests" */;
+			buildConfigurationList = OBJ_103 /* Build configuration list for PBXAggregateTarget "portaudioPackageTests" */;
 			buildPhases = (
 			);
 			dependencies = (
-				OBJ_104 /* PBXTargetDependency */,
+				OBJ_106 /* PBXTargetDependency */,
 			);
 			name = portaudioPackageTests;
 			productName = portaudioPackageTests;
@@ -21,54 +21,56 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		OBJ_110 /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_55 /* XCTestManifests.swift */; };
-		OBJ_111 /* portaudioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_56 /* portaudioTests.swift */; };
-		OBJ_113 /* portaudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "portaudio::portaudio::Product" /* portaudio.framework */; };
-		OBJ_114 /* libportaudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "portaudio::libportaudio::Product" /* libportaudio.framework */; };
-		OBJ_68 /* pa_linux_alsa.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* pa_linux_alsa.c */; };
-		OBJ_69 /* pa_mac_core.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* pa_mac_core.c */; };
-		OBJ_70 /* pa_mac_core_blocking.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* pa_mac_core_blocking.c */; };
-		OBJ_71 /* pa_mac_core_utilities.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* pa_mac_core_utilities.c */; };
-		OBJ_72 /* pa_allocation.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* pa_allocation.c */; };
-		OBJ_73 /* pa_converters.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_18 /* pa_converters.c */; };
-		OBJ_74 /* pa_cpuload.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_19 /* pa_cpuload.c */; };
-		OBJ_75 /* pa_debugprint.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* pa_debugprint.c */; };
-		OBJ_76 /* pa_dither.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_21 /* pa_dither.c */; };
-		OBJ_77 /* pa_front.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_22 /* pa_front.c */; };
-		OBJ_78 /* pa_process.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_23 /* pa_process.c */; };
-		OBJ_79 /* pa_ringbuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_24 /* pa_ringbuffer.c */; };
-		OBJ_80 /* pa_stream.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_25 /* pa_stream.c */; };
-		OBJ_81 /* pa_trace.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_26 /* pa_trace.c */; };
-		OBJ_82 /* pa_unix_hostapis.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_49 /* pa_unix_hostapis.c */; };
-		OBJ_83 /* pa_unix_util.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_50 /* pa_unix_util.c */; };
-		OBJ_90 /* portaudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_52 /* portaudio.swift */; };
-		OBJ_92 /* libportaudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "portaudio::libportaudio::Product" /* libportaudio.framework */; };
-		OBJ_99 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
+		4635FCF524B8B4D500129EB1 /* portaudio+stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4635FCF424B8B4D500129EB1 /* portaudio+stream.swift */; };
+		OBJ_101 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
+		OBJ_112 /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_56 /* XCTestManifests.swift */; };
+		OBJ_113 /* portaudioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_57 /* portaudioTests.swift */; };
+		OBJ_115 /* portaudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "portaudio::portaudio::Product" /* portaudio.framework */; };
+		OBJ_116 /* libportaudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "portaudio::libportaudio::Product" /* libportaudio.framework */; };
+		OBJ_69 /* pa_linux_alsa.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* pa_linux_alsa.c */; };
+		OBJ_70 /* pa_mac_core.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* pa_mac_core.c */; };
+		OBJ_71 /* pa_mac_core_blocking.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* pa_mac_core_blocking.c */; };
+		OBJ_72 /* pa_mac_core_utilities.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* pa_mac_core_utilities.c */; };
+		OBJ_73 /* pa_allocation.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* pa_allocation.c */; };
+		OBJ_74 /* pa_converters.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_18 /* pa_converters.c */; };
+		OBJ_75 /* pa_cpuload.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_19 /* pa_cpuload.c */; };
+		OBJ_76 /* pa_debugprint.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* pa_debugprint.c */; };
+		OBJ_77 /* pa_dither.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_21 /* pa_dither.c */; };
+		OBJ_78 /* pa_front.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_22 /* pa_front.c */; };
+		OBJ_79 /* pa_process.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_23 /* pa_process.c */; };
+		OBJ_80 /* pa_ringbuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_24 /* pa_ringbuffer.c */; };
+		OBJ_81 /* pa_stream.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_25 /* pa_stream.c */; };
+		OBJ_82 /* pa_trace.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_26 /* pa_trace.c */; };
+		OBJ_83 /* pa_unix_hostapis.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_49 /* pa_unix_hostapis.c */; };
+		OBJ_84 /* pa_unix_util.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_50 /* pa_unix_util.c */; };
+		OBJ_91 /* portaudio+print.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_52 /* portaudio+print.swift */; };
+		OBJ_92 /* portaudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_53 /* portaudio.swift */; };
+		OBJ_94 /* libportaudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "portaudio::libportaudio::Product" /* libportaudio.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		46B4CA6F24B81FF700B6D95A /* PBXContainerItemProxy */ = {
+		4635FCEF24B8AD5B00129EB1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "portaudio::libportaudio";
 			remoteInfo = libportaudio;
 		};
-		46B4CA7024B81FF800B6D95A /* PBXContainerItemProxy */ = {
+		4635FCF024B8AD5C00129EB1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "portaudio::portaudio";
 			remoteInfo = portaudio;
 		};
-		46B4CA7124B81FF800B6D95A /* PBXContainerItemProxy */ = {
+		4635FCF124B8AD5C00129EB1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "portaudio::libportaudio";
 			remoteInfo = libportaudio;
 		};
-		46B4CA7224B81FF900B6D95A /* PBXContainerItemProxy */ = {
+		4635FCF224B8AD5D00129EB1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
@@ -78,6 +80,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4635FCF424B8B4D500129EB1 /* portaudio+stream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "portaudio+stream.swift"; sourceTree = "<group>"; };
 		OBJ_11 /* pa_linux_alsa.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = pa_linux_alsa.c; sourceTree = "<group>"; };
 		OBJ_13 /* pa_mac_core.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = pa_mac_core.c; sourceTree = "<group>"; };
 		OBJ_14 /* pa_mac_core_blocking.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = pa_mac_core_blocking.c; sourceTree = "<group>"; };
@@ -114,39 +117,40 @@
 		OBJ_46 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; name = module.modulemap; path = "/Volumes/Development/Development/chimerasw2/portaudio-swift/portaudio.xcodeproj/GeneratedModuleMap/libportaudio/module.modulemap"; sourceTree = "<group>"; };
 		OBJ_49 /* pa_unix_hostapis.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = pa_unix_hostapis.c; sourceTree = "<group>"; };
 		OBJ_50 /* pa_unix_util.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = pa_unix_util.c; sourceTree = "<group>"; };
-		OBJ_52 /* portaudio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = portaudio.swift; sourceTree = "<group>"; };
-		OBJ_55 /* XCTestManifests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
-		OBJ_56 /* portaudioTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = portaudioTests.swift; sourceTree = "<group>"; };
+		OBJ_52 /* portaudio+print.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "portaudio+print.swift"; sourceTree = "<group>"; };
+		OBJ_53 /* portaudio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = portaudio.swift; sourceTree = "<group>"; };
+		OBJ_56 /* XCTestManifests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
+		OBJ_57 /* portaudioTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = portaudioTests.swift; sourceTree = "<group>"; };
 		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
-		OBJ_61 /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
-		OBJ_62 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		OBJ_62 /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		OBJ_63 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		"portaudio::libportaudio::Product" /* libportaudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = libportaudio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"portaudio::portaudio::Product" /* portaudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = portaudio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"portaudio::portaudioTests::Product" /* portaudioTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = portaudioTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		OBJ_112 /* Frameworks */ = {
+		OBJ_114 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_113 /* portaudio.framework in Frameworks */,
-				OBJ_114 /* libportaudio.framework in Frameworks */,
+				OBJ_115 /* portaudio.framework in Frameworks */,
+				OBJ_116 /* libportaudio.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_84 /* Frameworks */ = {
+		OBJ_85 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_91 /* Frameworks */ = {
+		OBJ_93 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_92 /* libportaudio.framework in Frameworks */,
+				OBJ_94 /* libportaudio.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,10 +234,10 @@
 			children = (
 				OBJ_6 /* Package.swift */,
 				OBJ_7 /* Sources */,
-				OBJ_53 /* Tests */,
-				OBJ_57 /* Products */,
-				OBJ_61 /* Makefile */,
-				OBJ_62 /* README.md */,
+				OBJ_54 /* Tests */,
+				OBJ_58 /* Products */,
+				OBJ_62 /* Makefile */,
+				OBJ_63 /* README.md */,
 			);
 			name = "";
 			sourceTree = "<group>";
@@ -241,31 +245,33 @@
 		OBJ_51 /* portaudio */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_52 /* portaudio.swift */,
+				OBJ_52 /* portaudio+print.swift */,
+				4635FCF424B8B4D500129EB1 /* portaudio+stream.swift */,
+				OBJ_53 /* portaudio.swift */,
 			);
 			name = portaudio;
 			path = Sources/portaudio;
 			sourceTree = SOURCE_ROOT;
 		};
-		OBJ_53 /* Tests */ = {
+		OBJ_54 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_54 /* portaudioTests */,
+				OBJ_55 /* portaudioTests */,
 			);
 			name = Tests;
 			sourceTree = SOURCE_ROOT;
 		};
-		OBJ_54 /* portaudioTests */ = {
+		OBJ_55 /* portaudioTests */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_55 /* XCTestManifests.swift */,
-				OBJ_56 /* portaudioTests.swift */,
+				OBJ_56 /* XCTestManifests.swift */,
+				OBJ_57 /* portaudioTests.swift */,
 			);
 			name = portaudioTests;
 			path = Tests/portaudioTests;
 			sourceTree = SOURCE_ROOT;
 		};
-		OBJ_57 /* Products */ = {
+		OBJ_58 /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				"portaudio::portaudioTests::Product" /* portaudioTests.xctest */,
@@ -309,10 +315,10 @@
 /* Begin PBXNativeTarget section */
 		"portaudio::SwiftPMPackageDescription" /* portaudioPackageDescription */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_95 /* Build configuration list for PBXNativeTarget "portaudioPackageDescription" */;
+			buildConfigurationList = OBJ_97 /* Build configuration list for PBXNativeTarget "portaudioPackageDescription" */;
 			buildPhases = (
-				46B4CA7324B822F200B6D95A /* SwiftLint */,
-				OBJ_98 /* Sources */,
+				4635FCF324B8AD6900129EB1 /* SwiftLint */,
+				OBJ_100 /* Sources */,
 			);
 			buildRules = (
 			);
@@ -324,10 +330,10 @@
 		};
 		"portaudio::libportaudio" /* libportaudio */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_64 /* Build configuration list for PBXNativeTarget "libportaudio" */;
+			buildConfigurationList = OBJ_65 /* Build configuration list for PBXNativeTarget "libportaudio" */;
 			buildPhases = (
-				OBJ_67 /* Sources */,
-				OBJ_84 /* Frameworks */,
+				OBJ_68 /* Sources */,
+				OBJ_85 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -340,15 +346,15 @@
 		};
 		"portaudio::portaudio" /* portaudio */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_86 /* Build configuration list for PBXNativeTarget "portaudio" */;
+			buildConfigurationList = OBJ_87 /* Build configuration list for PBXNativeTarget "portaudio" */;
 			buildPhases = (
-				OBJ_89 /* Sources */,
-				OBJ_91 /* Frameworks */,
+				OBJ_90 /* Sources */,
+				OBJ_93 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				OBJ_93 /* PBXTargetDependency */,
+				OBJ_95 /* PBXTargetDependency */,
 			);
 			name = portaudio;
 			productName = portaudio;
@@ -357,16 +363,16 @@
 		};
 		"portaudio::portaudioTests" /* portaudioTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_106 /* Build configuration list for PBXNativeTarget "portaudioTests" */;
+			buildConfigurationList = OBJ_108 /* Build configuration list for PBXNativeTarget "portaudioTests" */;
 			buildPhases = (
-				OBJ_109 /* Sources */,
-				OBJ_112 /* Frameworks */,
+				OBJ_111 /* Sources */,
+				OBJ_114 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				OBJ_115 /* PBXTargetDependency */,
-				OBJ_116 /* PBXTargetDependency */,
+				OBJ_117 /* PBXTargetDependency */,
+				OBJ_118 /* PBXTargetDependency */,
 			);
 			name = portaudioTests;
 			productName = portaudioTests;
@@ -390,7 +396,7 @@
 				en,
 			);
 			mainGroup = OBJ_5 /*  */;
-			productRefGroup = OBJ_57 /* Products */;
+			productRefGroup = OBJ_58 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -404,7 +410,7 @@
 /* End PBXProject section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		46B4CA7324B822F200B6D95A /* SwiftLint */ = {
+		4635FCF324B8AD6900129EB1 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -420,98 +426,100 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint autocorrect --path ${SRCROOT}/Sources/\n  swiftlint --path ${SRCROOT}/Sources/\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint autocorrect\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		OBJ_109 /* Sources */ = {
+		OBJ_100 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_110 /* XCTestManifests.swift in Sources */,
-				OBJ_111 /* portaudioTests.swift in Sources */,
+				OBJ_101 /* Package.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_67 /* Sources */ = {
+		OBJ_111 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_68 /* pa_linux_alsa.c in Sources */,
-				OBJ_69 /* pa_mac_core.c in Sources */,
-				OBJ_70 /* pa_mac_core_blocking.c in Sources */,
-				OBJ_71 /* pa_mac_core_utilities.c in Sources */,
-				OBJ_72 /* pa_allocation.c in Sources */,
-				OBJ_73 /* pa_converters.c in Sources */,
-				OBJ_74 /* pa_cpuload.c in Sources */,
-				OBJ_75 /* pa_debugprint.c in Sources */,
-				OBJ_76 /* pa_dither.c in Sources */,
-				OBJ_77 /* pa_front.c in Sources */,
-				OBJ_78 /* pa_process.c in Sources */,
-				OBJ_79 /* pa_ringbuffer.c in Sources */,
-				OBJ_80 /* pa_stream.c in Sources */,
-				OBJ_81 /* pa_trace.c in Sources */,
-				OBJ_82 /* pa_unix_hostapis.c in Sources */,
-				OBJ_83 /* pa_unix_util.c in Sources */,
+				OBJ_112 /* XCTestManifests.swift in Sources */,
+				OBJ_113 /* portaudioTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_89 /* Sources */ = {
+		OBJ_68 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_90 /* portaudio.swift in Sources */,
+				OBJ_69 /* pa_linux_alsa.c in Sources */,
+				OBJ_70 /* pa_mac_core.c in Sources */,
+				OBJ_71 /* pa_mac_core_blocking.c in Sources */,
+				OBJ_72 /* pa_mac_core_utilities.c in Sources */,
+				OBJ_73 /* pa_allocation.c in Sources */,
+				OBJ_74 /* pa_converters.c in Sources */,
+				OBJ_75 /* pa_cpuload.c in Sources */,
+				OBJ_76 /* pa_debugprint.c in Sources */,
+				OBJ_77 /* pa_dither.c in Sources */,
+				OBJ_78 /* pa_front.c in Sources */,
+				OBJ_79 /* pa_process.c in Sources */,
+				OBJ_80 /* pa_ringbuffer.c in Sources */,
+				OBJ_81 /* pa_stream.c in Sources */,
+				OBJ_82 /* pa_trace.c in Sources */,
+				OBJ_83 /* pa_unix_hostapis.c in Sources */,
+				OBJ_84 /* pa_unix_util.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_98 /* Sources */ = {
+		OBJ_90 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_99 /* Package.swift in Sources */,
+				4635FCF524B8B4D500129EB1 /* portaudio+stream.swift in Sources */,
+				OBJ_91 /* portaudio+print.swift in Sources */,
+				OBJ_92 /* portaudio.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		OBJ_104 /* PBXTargetDependency */ = {
+		OBJ_106 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "portaudio::portaudioTests" /* portaudioTests */;
-			targetProxy = 46B4CA7224B81FF900B6D95A /* PBXContainerItemProxy */;
+			targetProxy = 4635FCF224B8AD5D00129EB1 /* PBXContainerItemProxy */;
 		};
-		OBJ_115 /* PBXTargetDependency */ = {
+		OBJ_117 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "portaudio::portaudio" /* portaudio */;
-			targetProxy = 46B4CA7024B81FF800B6D95A /* PBXContainerItemProxy */;
+			targetProxy = 4635FCF024B8AD5C00129EB1 /* PBXContainerItemProxy */;
 		};
-		OBJ_116 /* PBXTargetDependency */ = {
+		OBJ_118 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "portaudio::libportaudio" /* libportaudio */;
-			targetProxy = 46B4CA7124B81FF800B6D95A /* PBXContainerItemProxy */;
+			targetProxy = 4635FCF124B8AD5C00129EB1 /* PBXContainerItemProxy */;
 		};
-		OBJ_93 /* PBXTargetDependency */ = {
+		OBJ_95 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "portaudio::libportaudio" /* libportaudio */;
-			targetProxy = 46B4CA6F24B81FF700B6D95A /* PBXContainerItemProxy */;
+			targetProxy = 4635FCEF24B8AD5B00129EB1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		OBJ_102 /* Debug */ = {
+		OBJ_104 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 			};
 			name = Debug;
 		};
-		OBJ_103 /* Release */ = {
+		OBJ_105 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 			};
 			name = Release;
 		};
-		OBJ_107 /* Debug */ = {
+		OBJ_109 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
@@ -540,7 +548,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_108 /* Release */ = {
+		OBJ_110 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
@@ -620,7 +628,7 @@
 			};
 			name = Release;
 		};
-		OBJ_65 /* Debug */ = {
+		OBJ_66 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEFINES_MODULE = NO;
@@ -664,7 +672,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_66 /* Release */ = {
+		OBJ_67 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEFINES_MODULE = NO;
@@ -708,7 +716,7 @@
 			};
 			name = Release;
 		};
-		OBJ_87 /* Debug */ = {
+		OBJ_88 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ENABLE_TESTABILITY = YES;
@@ -740,7 +748,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_88 /* Release */ = {
+		OBJ_89 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ENABLE_TESTABILITY = YES;
@@ -772,7 +780,7 @@
 			};
 			name = Release;
 		};
-		OBJ_96 /* Debug */ = {
+		OBJ_98 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				LD = /usr/bin/true;
@@ -781,7 +789,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_97 /* Release */ = {
+		OBJ_99 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				LD = /usr/bin/true;
@@ -793,20 +801,20 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		OBJ_101 /* Build configuration list for PBXAggregateTarget "portaudioPackageTests" */ = {
+		OBJ_103 /* Build configuration list for PBXAggregateTarget "portaudioPackageTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_102 /* Debug */,
-				OBJ_103 /* Release */,
+				OBJ_104 /* Debug */,
+				OBJ_105 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_106 /* Build configuration list for PBXNativeTarget "portaudioTests" */ = {
+		OBJ_108 /* Build configuration list for PBXNativeTarget "portaudioTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_107 /* Debug */,
-				OBJ_108 /* Release */,
+				OBJ_109 /* Debug */,
+				OBJ_110 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -820,29 +828,29 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_64 /* Build configuration list for PBXNativeTarget "libportaudio" */ = {
+		OBJ_65 /* Build configuration list for PBXNativeTarget "libportaudio" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_65 /* Debug */,
-				OBJ_66 /* Release */,
+				OBJ_66 /* Debug */,
+				OBJ_67 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_86 /* Build configuration list for PBXNativeTarget "portaudio" */ = {
+		OBJ_87 /* Build configuration list for PBXNativeTarget "portaudio" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_87 /* Debug */,
-				OBJ_88 /* Release */,
+				OBJ_88 /* Debug */,
+				OBJ_89 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_95 /* Build configuration list for PBXNativeTarget "portaudioPackageDescription" */ = {
+		OBJ_97 /* Build configuration list for PBXNativeTarget "portaudioPackageDescription" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_96 /* Debug */,
-				OBJ_97 /* Release */,
+				OBJ_98 /* Debug */,
+				OBJ_99 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
