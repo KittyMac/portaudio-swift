@@ -92,5 +92,6 @@ final class portaudioTests: XCTestCase {
     static var allTests = [
         ("testPrintInfo", testPrintInfo),
         ("testPrintDefaultDevicesOnly", testPrintDefaultDevicesOnly),
+        ("testPlaySineWave", testPlaySineWave),
     ]
 }
