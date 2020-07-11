@@ -41,7 +41,7 @@ public class PortAudioStream {
     }
     
     @discardableResult
-    func close() -> Bool {
+    public func close() -> Bool {
         let err = Pa_CloseStream(stream)
         if err != paNoError.rawValue {
             _printf("ERROR:  Pa_CloseStream returned error \(PaErrorAsString(err))\n")
