@@ -64,6 +64,8 @@
 
 #if PA_USE_COREAUDIO
 
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+
 #include "pa_mac_core_internal.h"
 
 #include <string.h> /* strlen(), memcmp() etc. */

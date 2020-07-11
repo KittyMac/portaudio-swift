@@ -128,15 +128,13 @@ final class portaudioTests: XCTestCase {
                 return Int32(paContinue.rawValue)
             }
             
-            print("passthrough \(numChannels) channels")
+            print("passthrough \(numChannels) channels for 30 seconds")
                                     
             let sampleRate: Double = inputDevice.defaultSampleRate
             let framePerBuffer: Int = 128
             if let stream = portaudio.openStream(&inputParameters, &outputParameters, sampleRate, framePerBuffer, nil, passthroughAudio, nil) {
                 stream.start()
-                while true {
-                    stream.sleep(1000)
-                }
+                stream.sleep(30000)
                 stream.stop()
                 stream.close()
             }
