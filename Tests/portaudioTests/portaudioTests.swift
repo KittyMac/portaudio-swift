@@ -1,7 +1,6 @@
 import XCTest
 @testable import portaudio
 import libportaudio
-import AVFoundation
 
 final class portaudioTests: XCTestCase {
 
@@ -149,7 +148,7 @@ final class portaudioTests: XCTestCase {
             
             var inputParameters = PaStreamParameters()
             inputParameters.device = inputDeviceIdx
-            inputParameters.channelCount = 2
+            inputParameters.channelCount = inputDevice.maxInputChannels
             inputParameters.sampleFormat = paFloat32
             inputParameters.suggestedLatency = inputDevice.defaultLowInputLatency
             inputParameters.hostApiSpecificStreamInfo = nil
@@ -189,7 +188,7 @@ final class portaudioTests: XCTestCase {
         //("testPrintInfo", testPrintInfo),
         //("testPrintDefaultDevicesOnly", testPrintDefaultDevicesOnly),
         //("testPlaySineWave", testPlaySineWave),
-        //("testInput", testInput),
-        ("testSimplePassthrough", testSimplePassthrough),
+        ("testInput", testInput),
+        //("testSimplePassthrough", testSimplePassthrough),
     ]
 }
