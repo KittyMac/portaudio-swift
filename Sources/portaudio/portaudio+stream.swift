@@ -12,16 +12,16 @@ public typealias PaStreamDataClosure = (@convention(c) (  _ inputBuffer: UnsafeR
 public typealias PaStreamFinishedClosure = (@convention(c) (_ userData: UnsafeMutableRawPointer?) -> Void)
 
 public class PortAudioStream {
-    var stream: PaStreamPtr
-    let framePerBuffer: UInt
+    private var stream: PaStreamPtr
+    private let framePerBuffer: UInt
     
-    init(_ stream: PaStreamPtr, _ framePerBuffer: UInt) {
+    public init(_ stream: PaStreamPtr, _ framePerBuffer: UInt) {
         self.stream = stream
         self.framePerBuffer = framePerBuffer
     }
     
     @discardableResult
-    func start() -> Bool {
+    public func start() -> Bool {
         let err = Pa_StartStream(stream)
         if err != paNoError.rawValue {
             _printf("ERROR:  Pa_StartStream returned error \(PaErrorAsString(err))\n")
@@ -31,7 +31,7 @@ public class PortAudioStream {
     }
     
     @discardableResult
-    func stop() -> Bool {
+    public func stop() -> Bool {
         let err = Pa_StopStream(stream)
         if err != paNoError.rawValue {
             _printf("ERROR:  Pa_StopStream returned error \(PaErrorAsString(err))\n")
@@ -51,7 +51,7 @@ public class PortAudioStream {
     }
     
     @discardableResult
-    func abort() -> Bool {
+    public func abort() -> Bool {
         let err = Pa_AbortStream(stream)
         if err != paNoError.rawValue {
             _printf("ERROR:  Pa_AbortStream returned error \(PaErrorAsString(err))\n")
@@ -61,7 +61,7 @@ public class PortAudioStream {
     }
     
     @discardableResult
-    func read(_ buffer:UnsafeMutableRawPointer) -> Bool {
+    public func read(_ buffer:UnsafeMutableRawPointer) -> Bool {
         let err = Pa_ReadStream(stream, buffer, framePerBuffer)
         if err != paNoError.rawValue {
             _printf("ERROR:  Pa_ReadStream returned error \(PaErrorAsString(err))\n")
@@ -71,7 +71,7 @@ public class PortAudioStream {
     }
     
     @discardableResult
-    func write(_ buffer:UnsafeMutableRawPointer) -> Bool {
+    public func write(_ buffer:UnsafeMutableRawPointer) -> Bool {
         let err = Pa_WriteStream(stream, buffer, framePerBuffer)
         if err != paNoError.rawValue {
             _printf("ERROR:  Pa_WriteStream returned error \(PaErrorAsString(err))\n")
@@ -80,7 +80,7 @@ public class PortAudioStream {
         return true
     }
     
-    func sleep(_ ms: Int) {
+    public func sleep(_ ms: Int) {
         Pa_Sleep(ms)
     }
 }
