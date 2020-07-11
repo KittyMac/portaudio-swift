@@ -100,19 +100,19 @@ final class portaudioTests: XCTestCase {
             outputDevice.print(outputDeviceIdx)
             
             let numChannels = inputDevice.maxInputChannels < outputDevice.maxOutputChannels ? inputDevice.maxInputChannels : outputDevice.maxOutputChannels
-                        
+                                    
             var inputParameters = PaStreamParameters()
             inputParameters.device = inputDeviceIdx
             inputParameters.channelCount = numChannels
             inputParameters.sampleFormat = paFloat32
-            inputParameters.suggestedLatency = inputDevice.defaultLowInputLatency
+            inputParameters.suggestedLatency = inputDevice.defaultHighOutputLatency
             inputParameters.hostApiSpecificStreamInfo = nil
             
             var outputParameters = PaStreamParameters()
             outputParameters.device = outputDeviceIdx
             outputParameters.channelCount = numChannels
             outputParameters.sampleFormat = paFloat32
-            outputParameters.suggestedLatency = outputDevice.defaultLowOutputLatency
+            outputParameters.suggestedLatency = outputDevice.defaultHighOutputLatency
             outputParameters.hostApiSpecificStreamInfo = nil
             
             let passthroughAudio: PaStreamDataClosure = { (inputBuffer, outputBuffer, framesPerBuffer, timeInfoPtr, statusFlags, userData) -> Int32 in
@@ -127,12 +127,16 @@ final class portaudioTests: XCTestCase {
                 }
                 return Int32(paContinue.rawValue)
             }
+            
+            print("passthrough \(numChannels) channels")
                                     
-            let sampleRate: Double = 44100
-            let framePerBuffer: Int = 512
+            let sampleRate: Double = inputDevice.defaultSampleRate
+            let framePerBuffer: Int = 128
             if let stream = portaudio.openStream(&inputParameters, &outputParameters, sampleRate, framePerBuffer, nil, passthroughAudio, nil) {
                 stream.start()
-                stream.sleep(10000)
+                while true {
+                    stream.sleep(1000)
+                }
                 stream.stop()
                 stream.close()
             }

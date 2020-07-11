@@ -101,7 +101,7 @@ extension PortAudio {
                                 outputParameters,
                                 sampleRate,
                                 UInt(framePerBuffer),
-                                paClipOff,
+                                paNoFlag,
                                 streamData,
                                 userData)
         if err != paNoError.rawValue {
