@@ -1,17 +1,17 @@
 import libportaudio
 
-typealias PaStreamPtr = UnsafeMutableRawPointer
+public typealias PaStreamPtr = UnsafeMutableRawPointer
 
-typealias PaStreamDataClosure = (@convention(c) (  _ inputBuffer: UnsafeRawPointer?,
+public typealias PaStreamDataClosure = (@convention(c) (  _ inputBuffer: UnsafeRawPointer?,
     _ outputBuffer: UnsafeMutableRawPointer?,
     _ framesPerBuffer: UInt,
     _ timeInfo: UnsafePointer<PaStreamCallbackTimeInfo>?,
     _ statusFlags: PaStreamCallbackFlags,
     _ userData: UnsafeMutableRawPointer?) -> Int32)
 
-typealias PaStreamFinishedClosure = (@convention(c) (_ userData: UnsafeMutableRawPointer?) -> Void)
+public typealias PaStreamFinishedClosure = (@convention(c) (_ userData: UnsafeMutableRawPointer?) -> Void)
 
-class PortAudioStream {
+public class PortAudioStream {
     var stream: PaStreamPtr
     let framePerBuffer: UInt
     
@@ -87,7 +87,7 @@ class PortAudioStream {
 
 extension PortAudio {
     
-    func openStream(_ inputParameters: UnsafePointer<PaStreamParameters>?,
+    public func openStream(_ inputParameters: UnsafePointer<PaStreamParameters>?,
                     _ outputParameters: UnsafePointer<PaStreamParameters>?,
                     _ sampleRate: Double = 44100,
                     _ framePerBuffer: Int = 512,
