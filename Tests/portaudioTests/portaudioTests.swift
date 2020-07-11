@@ -1,9 +1,10 @@
 import XCTest
 @testable import portaudio
 import libportaudio
+import AVFoundation
 
 final class portaudioTests: XCTestCase {
-    
+
     func testPrintInfo() {
 		PortAudio().print()
     }
@@ -106,22 +107,19 @@ final class portaudioTests: XCTestCase {
             inputParameters.device = inputDeviceIdx
             inputParameters.channelCount = numChannels
             inputParameters.sampleFormat = paFloat32
-            inputParameters.suggestedLatency = inputDevice.defaultHighInputLatency
+            inputParameters.suggestedLatency = inputDevice.defaultLowInputLatency
             inputParameters.hostApiSpecificStreamInfo = nil
             
             var outputParameters = PaStreamParameters()
             outputParameters.device = outputDeviceIdx
             outputParameters.channelCount = numChannels
             outputParameters.sampleFormat = paFloat32
-            outputParameters.suggestedLatency = outputDevice.defaultHighOutputLatency
+            outputParameters.suggestedLatency = outputDevice.defaultLowOutputLatency
             outputParameters.hostApiSpecificStreamInfo = nil
-            
-            print("passthrough channels: \(numChannels)")
-                        
+                                    
             let sampleRate: Double = 44100
             let framePerBuffer: Int = 512
             if let stream = portaudio.openStream(&inputParameters, &outputParameters, sampleRate, framePerBuffer) {
-                print("stream opened!")
                 stream.start()
                 
                 let buffer = UnsafeMutablePointer<Float>.allocate(capacity: framePerBuffer * Int(numChannels))
@@ -130,19 +128,6 @@ final class portaudioTests: XCTestCase {
                 while true {
                     if !stream.write(buffer) { break }
                     if !stream.read(buffer) { break }
-                    
-                    for idx in 0..<framePerBuffer {
-                        if buffer[idx] > 0.0 {
-                            print(buffer[idx])
-                        }
-                    }
-                    
-                    /*
-                    var avg: Float = 0
-                    for idx in 0..<framePerBuffer {
-                        avg += Float(buffer[idx])
-                    }
-                    print(avg / Float(framePerBuffer))*/
                 }
                 
                 buffer.deallocate()
@@ -154,10 +139,57 @@ final class portaudioTests: XCTestCase {
         }
     }
 
+    func testInput() {
+        
+        let portaudio = PortAudio()
+        
+        if let (inputDevice, inputDeviceIdx) = portaudio.defaultInputDevice {
+            
+            inputDevice.print(inputDeviceIdx)
+            
+            var inputParameters = PaStreamParameters()
+            inputParameters.device = inputDeviceIdx
+            inputParameters.channelCount = 2
+            inputParameters.sampleFormat = paFloat32
+            inputParameters.suggestedLatency = inputDevice.defaultLowInputLatency
+            inputParameters.hostApiSpecificStreamInfo = nil
+                        
+            let processAudio: PaStreamDataClosure = { (inputBuffer, outputBuffer, framesPerBuffer, timeInfoPtr, statusFlags, userData) -> Int32 in
+                if let inputBuffer = inputBuffer {
+                    let inPtr = inputBuffer.assumingMemoryBound(to: Float.self)
+                    
+                    var avg: Float = 0
+                    for idx in 0..<Int(framesPerBuffer) {
+                        avg += inPtr[idx]
+                    }
+                    avg /= Float(framesPerBuffer)
+                    if avg > 0 {
+                        print(avg)
+                    }
+                }
+                return Int32(paContinue.rawValue)
+            }
+            
+            let streamFinished: PaStreamFinishedClosure = { (userData) in
+                print("stream finished")
+            }
+            
+            var data: Int = 0
+            if let stream = portaudio.openStream(&inputParameters, nil, 44100, 512, &data, processAudio, streamFinished) {
+                stream.start()
+                stream.sleep(10000)
+                stream.stop()
+                stream.close()
+            }
+
+        }
+    }
+    
     static var allTests = [
-        /*("testPrintInfo", testPrintInfo),
-        ("testPrintDefaultDevicesOnly", testPrintDefaultDevicesOnly),
-        ("testPlaySineWave", testPlaySineWave),*/
+        //("testPrintInfo", testPrintInfo),
+        //("testPrintDefaultDevicesOnly", testPrintDefaultDevicesOnly),
+        //("testPlaySineWave", testPlaySineWave),
+        //("testInput", testInput),
         ("testSimplePassthrough", testSimplePassthrough),
     ]
 }
