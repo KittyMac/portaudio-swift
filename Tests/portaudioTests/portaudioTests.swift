@@ -3,7 +3,7 @@ import XCTest
 import libportaudio
 
 final class portaudioTests: XCTestCase {
-
+/*
     func testPrintInfo() {
 		PortAudio().print()
     }
@@ -88,16 +88,15 @@ final class portaudioTests: XCTestCase {
 
         }
     }
-    
+    */
     func testSimplePassthrough() {
-        
+                
         let portaudio = PortAudio()
         
         if let (outputDevice, outputDeviceIdx) = portaudio.defaultOutputDevice,
             let (inputDevice, inputDeviceIdx) = portaudio.defaultInputDevice {
             
             inputDevice.print(inputDeviceIdx)
-            
             outputDevice.print(outputDeviceIdx)
             
             let numChannels = inputDevice.maxInputChannels < outputDevice.maxOutputChannels ? inputDevice.maxInputChannels : outputDevice.maxOutputChannels
@@ -115,29 +114,32 @@ final class portaudioTests: XCTestCase {
             outputParameters.sampleFormat = paFloat32
             outputParameters.suggestedLatency = outputDevice.defaultLowOutputLatency
             outputParameters.hostApiSpecificStreamInfo = nil
+            
+            let passthroughAudio: PaStreamDataClosure = { (inputBuffer, outputBuffer, framesPerBuffer, timeInfoPtr, statusFlags, userData) -> Int32 in
+                if let inputBuffer = inputBuffer {
+                    let inPtr = inputBuffer.assumingMemoryBound(to: Float.self)
+                    if let outputBuffer = outputBuffer {
+                        let outPtr = outputBuffer.assumingMemoryBound(to: Float.self)
+                        for idx in 0..<Int(framesPerBuffer) {
+                            outPtr[idx] = inPtr[idx]
+                        }
+                    }
+                }
+                return Int32(paContinue.rawValue)
+            }
                                     
             let sampleRate: Double = 44100
             let framePerBuffer: Int = 512
-            if let stream = portaudio.openStream(&inputParameters, &outputParameters, sampleRate, framePerBuffer) {
+            if let stream = portaudio.openStream(&inputParameters, &outputParameters, sampleRate, framePerBuffer, nil, passthroughAudio, nil) {
                 stream.start()
-                
-                let buffer = UnsafeMutablePointer<Float>.allocate(capacity: framePerBuffer * Int(numChannels))
-                buffer.initialize(to: 0)
-                                
-                while true {
-                    if !stream.write(buffer) { break }
-                    if !stream.read(buffer) { break }
-                }
-                
-                buffer.deallocate()
-                
+                stream.sleep(10000)
                 stream.stop()
                 stream.close()
             }
 
         }
     }
-
+/*
     func testInput() {
         
         let portaudio = PortAudio()
@@ -183,12 +185,12 @@ final class portaudioTests: XCTestCase {
 
         }
     }
-    
+    */
     static var allTests = [
         //("testPrintInfo", testPrintInfo),
         //("testPrintDefaultDevicesOnly", testPrintDefaultDevicesOnly),
         //("testPlaySineWave", testPlaySineWave),
-        ("testInput", testInput),
-        //("testSimplePassthrough", testSimplePassthrough),
+        //("testInput", testInput),
+        ("testSimplePassthrough", testSimplePassthrough),
     ]
 }
