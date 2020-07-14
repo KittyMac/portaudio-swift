@@ -43,6 +43,8 @@
  *  @brief CoreAudio-specific PortAudio API extension header file.
  */
 
+#if PA_USE_COREAUDIO
+
 #include "portaudio.h"
 
 #include <AudioUnit/AudioUnit.h>
@@ -189,3 +191,5 @@ PaError PaMacCore_GetBufferSizeRange( PaDeviceIndex device,
 #endif /** __cplusplus */
 
 #endif /** PA_MAC_CORE_H */
+
+#endif
